@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment from "moment";
+import axios from 'axios';
 import {BrowserRouter as Router, Switch,Route,} from "react-router-dom";
 import NavigationContainer from './navigation/navigation-container';
 import Home from "./pages/home";
@@ -10,6 +11,16 @@ import PortfolioDetail from "./portfolio/portfolio-detail";
 import NoMatch from "./pages/no-match";
 
 export default class App extends Component {
+  getPortfolioItems() {
+    const axios = require('axios');
+    axios.get("https://donsargent.devcamp.space/portfolio/portfolio_items")
+    .then(response =>  {
+      console.log(response);
+    }).catch(error => {
+        console.log(error);
+    });
+  }
+
   render() {
     return (
       <div className='app'>
