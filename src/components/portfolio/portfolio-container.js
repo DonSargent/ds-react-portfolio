@@ -30,15 +30,19 @@ handleFilter(filter) {
 getPortfolioItems() {
     axios.get("https://donsargent.devcamp.space/portfolio/portfolio_items")
     .then(response =>  {
-      console.log(response.data, response);
-    }).catch(error => {
+      this.setState({
+          data: response.data.portfolio_items
+      })
+    })
+    .catch(error => {
         console.log(error);
     });
   }
 
 portfolioItems() {
     return this.state.data.map(item => {
-        return <PortfolioItem title={item.title} url={"goole.com"} slug={item} />;
+        console.log("item data", item);
+        return <PortfolioItem title={item.name} url={item.url} slug={item.id} />;
     });
 }
 
