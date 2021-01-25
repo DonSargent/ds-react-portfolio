@@ -15,7 +15,7 @@ export default class NavigationComponent extends Component {
       return (
           <div>
               <NavLink exact to="/">Home</NavLink>
-              <NavLink to="/about">About</NavLink>
+              <NavLink to="/about-me">About</NavLink>
               <button>Contact</button>
               <button>Blog</button>
               {true ? <button>Add Blog</button> : null}
