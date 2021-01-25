@@ -1,6 +1,7 @@
 import moment from "moment";
 import React, { Component } from "react";
 import PortfolioItem from "./portfolio-item";
+import axios from "axios"
 
 
 export default class PortfolioContainer extends Component {
@@ -19,6 +20,7 @@ export default class PortfolioContainer extends Component {
     };
 
     this.handleFilter = this.handleFilter.bind(this);
+    this.getPortfolioItems = this.getPortfolioItems.bind(this);
 }
 
 handleFilter(filter) {
@@ -29,9 +31,19 @@ handleFilter(filter) {
     })
 }
 
+
+getPortfolioItems() {
+    axios.get("https://donsargent.devcamp.space/portfolio/portfolio_items")
+    .then(response =>  {
+      console.log(response.data, response);
+    }).catch(error => {
+        console.log(error);
+    });
+  }
+
 portfolioItems() {
     return this.state.data.map(item => {
-        return <PortfolioItem title={item.title} url={"goole.com"} slug={item.slug} />;
+        return <PortfolioItem title={item.title} url={"goole.com"} slug={item} />;
     });
 }
 
