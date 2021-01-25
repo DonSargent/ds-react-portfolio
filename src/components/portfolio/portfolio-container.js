@@ -11,16 +11,11 @@ export default class PortfolioContainer extends Component {
     this.state = {
         pageTitle: "Welcome to my portfolio",
         isLoading: false,
-        data: [
-            {title: "Quip", category: "eCommerce", slug: 'quip' }, 
-            {title: "Eventbrite", category: "Scheduling", slug: 'eventbrite' },
-            {title: "Ministry Safe", category: "Enterprise", slug: 'ministry-safe' },
-            {title: "SwingAway", category: "eCommerce", slug: 'swingaway' }
-        ]
+        data: []
     };
 
     this.handleFilter = this.handleFilter.bind(this);
-    this.getPortfolioItems = this.getPortfolioItems.bind(this);
+    
 }
 
 handleFilter(filter) {
@@ -47,6 +42,9 @@ portfolioItems() {
     });
 }
 
+    componentDidMount() {
+        this.getPortfolioItems();
+    }
 
 
     render() {
