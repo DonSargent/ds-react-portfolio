@@ -33,8 +33,6 @@ export default class NavigationComponent extends Component {
                 <NavLink to="/blog" activeClassName="nav-link-active">Blog</NavLink>
               </div>
 
-              
-
             </div>
 
             <div className="right-side">Don Sargent</div>
