@@ -3,3 +3,8 @@ body {
   font-family: 'Architects Daughter', cursive;
 }
 
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
