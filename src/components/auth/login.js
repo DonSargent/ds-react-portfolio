@@ -7,7 +7,8 @@ export default class Login extends Component {
 
         this.state = {
           email: "",
-          password: ""
+          password: "",
+          errorText: ""
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -24,7 +25,7 @@ export default class Login extends Component {
     }
 
     handleSubmit(event) {
-        axios.post("http://api.devcamp.space/sessions", 
+        axios.post("https://api.devcamp.space/sessions", 
             {
                 client: 
                     {   
@@ -33,21 +34,19 @@ export default class Login extends Component {
                     }
                 },
                 { withCredentials: true }
-        
-        ).then(response => {console.log("responce", response);})
-    
+        ).then(response => { console.log(response)
+        }).catch(error => { console.log("error", error) });
         event.preventDefault()
     }
 
     render() {
         return (
             <div>
-                <h1>Login To Access Your Dashboard,
-                    Master Don Sargent.
-                </h1>
+                <h1>Login To Access Your Dashboard.</h1>
+                <div>{this.state.errorText}</div>
 
-                <h2>{this.state.email}</h2>
-                <h2>{this.state.password}</h2>
+                {/* <h2>{this.state.email}</h2>
+                <h2>{this.state.password}</h2> */}
 
                 <form onSubmit={this.handleSubmit}>
                     <input
