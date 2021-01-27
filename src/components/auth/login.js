@@ -20,8 +20,9 @@ export default class Login extends Component {
 
     handleChange(event){
         this.setState({
-            [event.target.name]: event.target.value
-        })
+            [event.target.name]: event.target.value,
+            errorText: ""
+        }); 
     }
 
     handleSubmit(event) {
@@ -34,10 +35,24 @@ export default class Login extends Component {
                     }
                 },
                 { withCredentials: true }
-        ).then(response => { console.log(response)
-        }).catch(error => { console.log("error", error) });
-        event.preventDefault()
-    }
+        ).then(response => { 
+            if ( response.data.status === 'created') {
+                console.log("Your In.")
+                this.props.handleSuccessfulAuth();
+            } else {
+                this.setState({
+                    errorText: "Wrong email."
+                });
+                this.props.handleUnSuccessfulAuth();
+            }    
+    }).catch(error => {
+        this.setState({
+            errorText: "Try again"
+        });
+        this.props.handleUnSuccessfulAuth();
+    });
+    event.preventDefault()
+}
 
     render() {
         return (
