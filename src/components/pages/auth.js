@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import Login from "../auth/login";
 import loginImg from "../../../static/assets/images/auth/login.jpg";
 

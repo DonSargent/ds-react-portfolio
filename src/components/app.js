@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {BrowserRouter as Router, Switch,Route,} from "react-router-dom";
-import NavigationContainer from './navigation/navigation-container';
+import axios from "axios";
+import NavigationContainer from "./navigation/navigation-container";
 import Home from "./pages/home";
 import About from "./pages/about";
 import Contact from "./pages/contact";
@@ -32,10 +33,38 @@ export default class App extends Component {
       loggedInStatus: "NOT_LOGGED_IN"
     })
   }
+
+  checkLoginStatus() {
+    return axios.get("https://api.devcamp.space/logged_in", { 
+      withCredentials: true
+    }).then(response => {
+      const loggedIn = response.data.logged_in;
+      const loggedInStatus = this.state.loggedInStatus;
+
+      if (loggedIn && loggedInStatus === "LOGGED_IN") {
+        return loggedIn;
+      } else if (loggedIn && loggedInStatus === "NOT_LOGGED_IN") {
+        this.setState({
+          loggedInStatus: "LOGGED_IN"
+        });
+      } else if (!loggedIn && loggedInStatus === "LOGGED_IN") {
+        this.setState({
+          loggedInStatus: "NOT_LOGGED IN"
+        });
+      }
+    })
+    .catch(error => {
+      console.log("...this is the website you are looking for", error)
+    })
+  }
+
+  componentDidMount() {
+    this.checkLoginStatus();
+  }
   
   render() {
     return (
-      <div className='app'>
+      <div className="app">
           <Router>
             <div>
               
