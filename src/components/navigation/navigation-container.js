@@ -2,11 +2,7 @@ import React from "react"
 import { NavLink } from 'react-router-dom'
 
 
-const NavigationComponent = (props) => {
-
-  }
-
-    
+const NavigationComponent = props => {
       return (
           <div className="nav-wrapper">
 
