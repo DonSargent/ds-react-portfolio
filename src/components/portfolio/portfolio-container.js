@@ -1,4 +1,3 @@
-import moment from "moment";
 import React, { Component } from "react";
 import PortfolioItem from "./portfolio-item";
 import axios from "axios"
