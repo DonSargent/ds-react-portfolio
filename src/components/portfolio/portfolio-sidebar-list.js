@@ -11,7 +11,7 @@ const PortfolioSidebarList = (props) => {
                 <h1 className="title">{portfolioItem.name}</h1>
                 <h2>{portfolioItem.id}</h2>
             </div>
-        )
+        );
     })
 
 
