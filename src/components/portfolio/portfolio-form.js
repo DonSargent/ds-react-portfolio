@@ -28,7 +28,13 @@ export default class PortfolioForm extends Component {
     this.handleThumbDrop = this.handleThumbDrop.bind(this);
     this.handleBannerDrop = this.handleBannerDrop.bind(this);
     this.handleLogoDrop = this.handleLogoDrop.bind(this);
+
+    this.thumbRef = React.createRef();
+    this.bannerRef = React.createRef();
+    this.logoRef = React.createRef();
   }
+
+
 
     handleThumbDrop() {
         return {
@@ -105,7 +111,24 @@ export default class PortfolioForm extends Component {
       )
       .then(response => {
         this.props.handleSuccessfulFormSubmission(response.data.Portfolio_item)
+        
+
+        this.setState = ({
+            name: "",
+            description: "",
+            category: "eCommerce",
+            position: "",
+            url: "",
+            thumb_image: "",
+            banner_image: "",
+            logo: ""
+        });
+
         console.log("response", response);
+
+        [this.thumbRef, thisbannerRef, this.logoRef].forEach(ref => {
+            ref.current.dropzone.removeAllFiles();
+        })
       })
       .catch(error => {
         console.log("portfolio form handleSubmit error", error);
@@ -116,10 +139,9 @@ export default class PortfolioForm extends Component {
 
   render() {
     return (
-      <div>
-        <h1>PortfolioForm</h1>
+      
 
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}  className="portfolio-form-wrapper">
           <div>
             <input
               type="text"
@@ -140,17 +162,18 @@ export default class PortfolioForm extends Component {
 
             <div>
                 <input
-                type="text"
-                name="position"
-                placeholder="Position"
-                value={this.state.position}
-                onChange={this.handleChange}
+                    type="text"
+                    name="position"
+                    placeholder="Position"
+                    value={this.state.position}
+                    onChange={this.handleChange}
                 />
 
                 <select
-                name="category"
-                value={this.state.category}
-                onChange={this.handleChange}
+                    name="category"
+                    value={this.state.category}
+                    onChange={this.handleChange}
+                    className="select-element"
                 >
                     <option value="Ecommerce">Ecommerce</option>
                     <option value="Scheduling">Scheduling</option>
@@ -170,19 +193,22 @@ export default class PortfolioForm extends Component {
 
             <div className="image-uploaders">
                 <DropzoneComponent
-                    confing={this.componentConfig()}
+                    ref={this.componentRef}
+                    config={this.componentConfig()}
                     djsConfig={this.djsConfig()}
                     eventHandlers={this.handleThumbDrop()}
                 />
 
                 <DropzoneComponent
-                    confing={this.componentConfig()}
+                    ref={this.bannerRef}
+                    config={this.componentConfig()}
                     djsConfig={this.djsConfig()}
                     eventHandlers={this.handleBannerDrop()}
                 />
 
                 <DropzoneComponent
-                    confing={this.componentConfig()}
+                    ref={this.logoRef}
+                    config={this.componentConfig()}
                     djsConfig={this.djsConfig()}
                     eventHandlers={this.handleLogoDrop()}
                 />
@@ -194,7 +220,7 @@ export default class PortfolioForm extends Component {
                 <button type="submit">Save</button>
             </div>
         </form>
-      </div>
+      
     );
   }
 }
