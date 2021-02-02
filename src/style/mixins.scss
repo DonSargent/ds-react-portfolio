@@ -28,9 +28,9 @@
         border-left: 0px;
         border-bottom: 1px solid rebeccapurple;
         background-color: transparent;
-        transition: 0.5s ease-in-out;
-        font-size: 1.7em;
-        margin-bottom: 25px;
+        transition: 0.5s all ease-in-out;
+        font-size: 1.1em;
+        margin-bottom: 21px;
 
 
         &:focus {
@@ -38,5 +38,10 @@
             border-bottom: 1px solid $dark-teal;
         }    
     }
+}
+
+@mixin base-grid() {
+    display: grid;
+    grid-gap: 21px;
 }
 
