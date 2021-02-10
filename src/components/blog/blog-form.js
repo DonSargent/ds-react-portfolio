@@ -124,9 +124,13 @@ export default class BlogForm extends Component {
           featured_image: ""
         });
 
-        this.props.handleSuccessfullFormSubmission(
-          response.data.portfolio_blog
-        );
+        if (this.props.editMode) {
+          this.props.handleUpdateFormSubmission(response.data.portfolio_blog);
+        } else {
+          this.props.handleSuccessfullFormSubmission(
+            response.data.portfolio_blog
+          );
+        }
       })
       .catch(error => {
         console.log("handleSubmit for blog error", error);
