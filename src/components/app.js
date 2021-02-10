@@ -87,54 +87,62 @@ export default class App extends Component {
       <div className="container">
           <Router>
             <div>
-              
-              <NavigationContainer loggedInStatus={this.state.loggedInStatus } handleSuccessfulLogout={this.handleSuccessfulLogout} />
+              <NavigationContainer 
+              loggedInStatus={
+                this.state.loggedInStatus 
+                } 
+                handleSuccessfulLogout={
+                  this.handleSuccessfulLogout
+                  } 
+              />
 
               
               <Switch>
-              <Route exact path="/" component={Home} />
-              <Route 
-                path="/auth" 
-                render={
-                  props => ( 
-                    <Auth 
-                      {...props} 
-                      handleSuccessfulLogin={this.handleSuccessfulLogin} 
-                      handleUnsuccessfulLogin={this.handleUnsuccessfulLogin}
-                    />  
+                <Route exact path="/" component={Home} />
+                <Route 
+                  path="/auth" 
+                  render={
+                    props => ( 
+                      <Auth 
+                        {...props} 
+                        handleSuccessfulLogin={this.handleSuccessfulLogin} 
+                        handleUnsuccessfulLogin={this.handleUnsuccessfulLogin}
+                      />  
+                    )
+                  }
+                />
+
+                <Route path="/about-me" component={About} />
+                <Route path="/blog" 
+                  render={props => (
+                    <Blog {...props} 
+                    loggedInStatus={this.state.loggedInStatus} />
                   )}
-              />
-              <Route path="/about-me" component={About} />
-              <Route path="/blog" 
-                render={props => (
-                  <Blog {...props} 
-                  loggedInStatus={this.state.loggedInStatus} />
-                )}
-              />
+                />
 
-              <Route 
-                path="/b/:slug" 
-                render={props => (
-                  <BlogDetail 
-                    { ...props} 
-                    loggedInStatus={this.state.loggedInStatus } 
-                  />
-                )}
-              />
+                <Route 
+                  path="/b/:slug" 
+                  render={props => (
+                    <BlogDetail 
+                      { ...props} 
+                      loggedInStatus={this.state.loggedInStatus } 
+                    />
+                  )}
+                />
 
-              <Route path="/contact" component={Contact} />
-              
-              {this.state.loggedInStatus === "LOGGED_IN" ? this.authorizedPages() : null }          
-              <Route path="/portfolio/:slug" 
-                component={PortfolioDetail} 
-
-              />            
-              <Route component={NoMatch} />
-            </Switch>
+                <Route path="/contact" component={Contact} />
+                
+                {this.state.loggedInStatus === "LOGGED_IN" 
+                ? this.authorizedPages() 
+                : null }          
+                <Route 
+                  path="/portfolio/:slug" 
+                  component={PortfolioDetail} 
+                />            
+                <Route component={NoMatch} />
+              </Switch>
             </div>
         </Router>
-        
-        
       </div>
     );
   }
