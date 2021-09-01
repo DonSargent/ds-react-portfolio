@@ -13,19 +13,10 @@ export default function() {
         />
 
         <div className="right-column">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et quam 
-          ultrices, porttitor eros in, bibendum arcu. Sed accumsan malesuada congue. 
-          In porttitor ante sapien, a scelerisque dui condimentum ac. Nunc in cursus nisl,
-          et efficitur dolor. Donec et risus aliquam odio lobortis vestibulum. Fusce et 
-          tellus quis nibh venenatis auctor. Nullam vehicula sapien urna, eget volutpat 
-          nunc finibus laoreet. Etiam nec feugiat ex. Phasellus sodales, justo id luctus
-          semper, dui elit molestie ipsum, ac consequat nunc neque facilisis nisl. Fusce
-          finibus quam eget est commodo, ac malesuada ipsum vehicula. Aenean sagittis
-          sit amet dui viverra laoreet.Maecenas ut fermentum purus. Maecenas eleifend dictum
-          ipsum, vel mattis magna. Maecenas in ante eu ex mattis pellentesque molestie sed nisl.
-          Cras sodales porttitor efficitur. Nullam ornare, justo sed suscipit feugiat,
-
-
+       Hello! Don Sargent here, it's great to meet you! 
+       I'm a 40-year-old software developer looking for new projects. 
+       If you want to get in touch, feel free. I'm always interested in learning about new technology. 
+       Thank you!
         </div> 
       </div>
   );
